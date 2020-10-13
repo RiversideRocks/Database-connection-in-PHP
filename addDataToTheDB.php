@@ -1,9 +1,6 @@
 <?php
-	$dbhost="localhost:3306";
-	$dbuser="root";
-	$dbpass="";
-	$dbname="Sample";
-	$sql=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+	include "db_connect.php";
+	connect_to_mysql();
 	
 ?>
 <html>
@@ -21,7 +18,8 @@
 
 <?php
 	if(isset($_POST['submit'])){
-		$indata="INSERT INTO practical(name) values('".$_POST["name"]."')";
+		$value = $sql -> real_escape_string($_POST["name"]);
+		$indata="INSERT INTO practical(name) values('".$value."')";
 		
 		if (mysqli_query($sql, $indata)){
 			echo "New record created successfully";
