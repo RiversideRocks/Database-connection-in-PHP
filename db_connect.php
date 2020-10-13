@@ -1,5 +1,6 @@
 <?php
 
+function connect_to_mysql() {
 	$dbhost="localhost:3306";
 	$dbuser="root";
 	$dbpass="";
@@ -7,8 +8,12 @@
 	$sql = mysqli_connect($dbhost,$dbuser,$dbpass);
 
 	if(! $sql){
-	die('could not connect'.mysqli_error());
+	  return 'Could not connect. Reason: '.mysqli_error());
+	}else{
+		return "Connect successfully";
 	}
-	echo "Connect successfully";
+}
+
+connect_to_mysql()
 	
 	?>
